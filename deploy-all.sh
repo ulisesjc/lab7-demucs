@@ -4,6 +4,8 @@ kubectl apply -f redis/redis-service.yaml
 
 kubectl apply -f rest/rest-deployment.yaml
 kubectl apply -f rest/rest-service.yaml
+# On GKE apply rest/rest-ingress-gke.yaml instead
+kubectl apply -f rest/rest-ingress.yaml
 
 kubectl apply -f logs/logs-deployment.yaml
 

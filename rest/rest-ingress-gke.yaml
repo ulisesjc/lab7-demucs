@@ -1,0 +1,17 @@
+#
+# GKE load-balancer ingress. First enable it with:
+#   gcloud container clusters update mykube --update-addons=HttpLoadBalancing=ENABLED
+# Then find the IP with: kubectl get ingress rest-ingress --output yaml
+#
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rest-ingress
+  annotations:
+    kubernetes.io/ingress.class: "gce"
+spec:
+  defaultBackend:
+    service:
+      name: rest-service
+      port:
+        number: 5000

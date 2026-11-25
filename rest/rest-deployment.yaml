@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rest
+spec:
+  selector:
+    matchLabels:
+      app: rest
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: rest
+    spec:
+      containers:
+      - name: rest
+        # Change to your Docker Hub user (see rest/Makefile) and bump the tag on each push
+        image: YOUR_DOCKER_USERNAME_HERE/demucs-rest:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            cpu: 100m
+            memory: 200Mi
+        env:
+        - name: REDIS_HOST
+          value: "redis"
+        - name: REDIS_PORT
+          value: "6379"
+        - name: MINIO_HOST
+          value: "minio:9000"
+        - name: MINIO_USER
+          value: "rootuser"
+        - name: MINIO_PASSWD
+          value: "rootpass123"

@@ -1,6 +1,9 @@
 #
 # See https://kubernetes.io/docs/concepts/services-networking/ingress/
 #
+# Local development: requires the ingress-nginx controller.
+# For GKE use rest-ingress-gke.yaml instead.
+#
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -11,6 +14,12 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-body-size: 16m
 spec:
   rules:
-#
-# Your ingress rules here
-#
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: rest-service
+            port:
+              number: 5000

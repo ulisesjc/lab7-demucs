@@ -1,0 +1,17 @@
+#
+# NodePort works with both the nginx ingress (local) and the GKE load balancer.
+#
+apiVersion: v1
+kind: Service
+metadata:
+  name: rest-service
+  labels:
+    app: rest
+spec:
+  type: NodePort
+  ports:
+    - protocol: "TCP"
+      port: 5000
+      targetPort: 5000
+  selector:
+    app: rest

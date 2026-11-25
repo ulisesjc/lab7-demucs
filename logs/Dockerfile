@@ -1,4 +1,4 @@
-FROM python:3.6-alpine
+FROM python:3.11-alpine
 LABEL MAINTAINER="PUT YOUR EMAIL HERE"
 
 RUN  pip3 install redis
